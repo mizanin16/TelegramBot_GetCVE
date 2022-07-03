@@ -1,0 +1,10 @@
+__pycache__
+.idea
+bot_oc/
+venv/
+bot_oc.rar
+db/
+*.db
+createdb.sql
+data_set.xlsx
+scripts/config.py
