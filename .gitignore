@@ -5,6 +5,5 @@ venv/
 bot_oc.rar
 db/
 *.db
-createdb.sql
-data_set.xlsx
+*createdb.sql
 scripts/config.py

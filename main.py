@@ -1,8 +1,11 @@
+import os.path
+
 from scripts.connection import get_info_fetchall
 from aiogram import Bot, Dispatcher, executor, types
 import scripts.keyboards as kb
 import time
 from scripts.config import TOKEN
+from scripts.open_xls import file_db, to_sql_excel, data_set
 
 # Объект бота
 bot = Bot(token=TOKEN)
@@ -131,5 +134,15 @@ async def send_welcome(msg: types.Message):
 
 
 if __name__ == "__main__":
-    # Запуск бота
-    executor.start_polling(dp, skip_updates=True)
+    while True:
+        if os.path.exists(file_db):
+            # Запуск бота
+            executor.start_polling(dp, skip_updates=True)
+        else:
+            print(f'{file_db} is not exists.')
+            if os.path.exists(data_set):
+                print(f'Произойдёт занесение данных в БД с файла {data_set}')
+                to_sql_excel()
+            else:
+                print(f'Скачаёте файл и положите по пути {data_set}')
+                exit()
